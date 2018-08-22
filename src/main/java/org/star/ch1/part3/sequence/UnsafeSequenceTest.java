@@ -1,17 +1,17 @@
 package org.star.ch1.part3.sequence;
 
-public class SequenceTest implements Runnable {
+public class UnsafeSequenceTest implements Runnable {
 
     private UnsafeSequence unsafeSequence;
 
-    public SequenceTest(UnsafeSequence unsafeSequence) {
+    public UnsafeSequenceTest(UnsafeSequence unsafeSequence) {
         this.unsafeSequence = unsafeSequence;
     }
 
     @Override
     public void run() {
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             System.out.println(Thread.currentThread().getName() + ":" + unsafeSequence.getNext());
         }
 
@@ -21,10 +21,10 @@ public class SequenceTest implements Runnable {
 
         UnsafeSequence unsafeSequence = new UnsafeSequence();
 
-        SequenceTest sequenceTest = new SequenceTest(unsafeSequence);
+        UnsafeSequenceTest unsafeSequenceTest = new UnsafeSequenceTest(unsafeSequence);
 
-        Thread thread1 = new Thread(sequenceTest);
-        Thread thread2 = new Thread(sequenceTest);
+        Thread thread1 = new Thread(unsafeSequenceTest);
+        Thread thread2 = new Thread(unsafeSequenceTest);
 
         thread1.start();
         thread2.start();
