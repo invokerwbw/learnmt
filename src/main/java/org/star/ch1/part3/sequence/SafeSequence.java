@@ -17,7 +17,7 @@ public class SafeSequence implements Sequence {
     }
 
     public int getNext2() {
-        return atomicInteger.getAndAdd(1);
+        return atomicInteger.getAndIncrement();
     }
 
 }
