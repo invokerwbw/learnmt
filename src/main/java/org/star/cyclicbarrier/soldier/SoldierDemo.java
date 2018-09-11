@@ -24,10 +24,11 @@ public class SoldierDemo {
                 //等待所有士兵到齐
                 cyclicBarrier.await();
                 doWork();
+                //等待所有士兵完成工作
                 cyclicBarrier.await();
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e) {//在等待过程中,线程被中断
                 e.printStackTrace();
-            } catch (BrokenBarrierException e) {
+            } catch (BrokenBarrierException e) {//表示当前CyclicBarrier已经损坏.系统无法等到所有线程到齐了.
                 e.printStackTrace();
             }
 
@@ -72,6 +73,7 @@ public class SoldierDemo {
         Thread[] allSoldier = new Thread[N];
         boolean flag = false;
         CyclicBarrier cyclicBarrier = new CyclicBarrier(N, new BarrierRun(flag, N));
+        //设置屏障点,主要为了执行这个方法
         System.out.println("集合队伍！");
         for (int i = 0; i < N; i++) {
             System.out.println("士兵" + i + "报道！");
